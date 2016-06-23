@@ -1,0 +1,46 @@
+﻿@model QuoteCreator.Models.Quote
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Quote Details</h2>
+<div>
+    <h4>Quotes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Customer:")
+        </dt>
+
+        <dd>
+            @(Model.Customer.FirstName + " " + Model.Customer.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Country:")
+        </dt>
+
+        <dd>
+            @Model.Customer.Country
+        </dd>
+
+
+        <dt>
+            @Html.DisplayName("Products:")
+        </dt>
+        @{ foreach (var item in Model.QuoteProducts)
+            {
+                <dd>
+                    @item.Product.Name  @item.Product.Price.ToString()  x @item.Quantity.ToString()
+                </dd>
+            }
+        }
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
